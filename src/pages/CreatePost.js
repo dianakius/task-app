@@ -1,7 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CreatePost() {
-    return <h1>You can create a post here</h1>;
+    return (
+        <div>
+            <h1>Create Your post</h1>
+            <Link to="/">Go back to Home</Link>
+        </div>
+    );
 }
 
 export default CreatePost;

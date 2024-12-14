@@ -1,7 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function PostDetails() {
-    return <h1>You can view full details of your post here</h1>;
-}
+    return (
+            <div>
+                <h1>View Your Details</h1>
+                <Link to="/">Go back to Home</Link>
+            </div>
+        );
+    }
+    
 
 export default PostDetails;

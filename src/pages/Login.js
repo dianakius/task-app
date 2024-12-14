@@ -1,7 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
-    return <h1>Here you can Login</h1>;
+    return (
+        <div>
+            <h1>Login Page</h1>
+            <Link to="/">Go back to Home</Link>
+        </div>
+    );
 }
 
 export default Login;
