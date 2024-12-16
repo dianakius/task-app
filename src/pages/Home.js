@@ -3,11 +3,24 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         const status = localStorage.getItem("isLoggedIn") === "true";
         setIsLoggedIn(status);
+
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch("/data/posts.json");
+                const data = await response.json();
+                setPosts(data);
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+            }
+        };
+
+        fetchPosts();
     }, []);
 
     const handleLogout = () => {
@@ -32,6 +45,22 @@ function Home() {
                 <p>
                     You are not logged in. Please <Link to="/login">log in</Link>.
                 </p>
+            )}
+
+<h2>Recent Posts</h2>
+            {posts.length > 0 ? (
+                <ul>
+                    {posts.map((post) => (
+                        <li key={post.id}>
+                            <h3>{post.title}</h3>
+                            <p>{post.text}</p>
+                            <p><strong>Category:</strong> {post.category}</p>
+                            <p><strong>Date Published:</strong> {post.datePublished}</p>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No posts available.</p>
             )}
 
             <nav>
