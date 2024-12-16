@@ -16,7 +16,9 @@ function CategoryDetails() {
             <div>
                 {}
                 {isLoggedIn ? (
-                    <button>Create Post</button>
+                    <Link to="/create-post">
+                                            <button>Create New Post</button>
+                                        </Link>
                 ) : (
                     <p>
                         You are not logged in to create a post. Please <Link to="/login">log in</Link>.

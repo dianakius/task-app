@@ -40,6 +40,10 @@ function Home() {
                     <p>Welcome back, {localStorage.getItem("userEmail")}</p>
                     <button onClick={handleLogout}>Logout</button>
                     <p>You now have extra options since you're logged in:</p>
+                    {}
+                    <Link to="/create-post">
+                        <button>Create New Post</button>
+                    </Link>
                 </div>
             ) : (
                 <p>
@@ -47,7 +51,7 @@ function Home() {
                 </p>
             )}
 
-<h2>Recent Posts</h2>
+            <h2>Recent Posts</h2>
             {posts.length > 0 ? (
                 <ul>
                     {posts.map((post) => (
@@ -77,5 +81,3 @@ function Home() {
 }
 
 export default Home;
-
-
