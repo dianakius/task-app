@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [posts, setPosts] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const status = localStorage.getItem("isLoggedIn") === "true";
@@ -27,8 +26,6 @@ function Home() {
         localStorage.removeItem("isLoggedIn");
         localStorage.removeItem("userEmail");
         setIsLoggedIn(false);
-
-        navigate("/login");
     };
 
     return (
@@ -38,9 +35,10 @@ function Home() {
             {isLoggedIn ? (
                 <div>
                     <p>Welcome back, {localStorage.getItem("userEmail")}</p>
-                    <button onClick={handleLogout}>Logout</button>
+                    <Link to="/login" onClick={handleLogout}>
+                        <button>Logout</button>
+                    </Link>
                     <p>You now have extra options since you're logged in:</p>
-                    {}
                     <Link to="/create-post">
                         <button>Create New Post</button>
                     </Link>
