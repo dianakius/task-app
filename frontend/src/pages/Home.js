@@ -9,30 +9,27 @@ function Home() {
 
     useEffect(() => {
         const status = localStorage.getItem("isLoggedIn") === "true";
-        console.log("Login status from localStorage:", status);
         setIsLoggedIn(status);
-
+    
         const fetchPosts = async () => {
             try {
-                console.log("Fetching posts from the backend...");
-                const response = await fetch("http://localhost:3001/api/posts");
-                console.log("Fetch response status:", response.status);
-
+                const response = await fetch("/api/posts");
+    
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
+    
                 const data = await response.json();
-                console.log("Posts fetched successfully:", data);
                 setPosts(data);
             } catch (error) {
                 console.error("Error fetching posts:", error);
             }
         };
-
+    
         fetchPosts();
     }, []);
-
+    
+    
     const handleLogout = () => {
         console.log("Logging out...");
         localStorage.removeItem("isLoggedIn");
